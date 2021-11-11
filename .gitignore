@@ -127,3 +127,7 @@ tests/.esphome/
 
 sdkconfig.*
 !sdkconfig.defaults
+workspace.code-workspace
+weather-station/
+secrets.yaml
+esphome-own.yaml
