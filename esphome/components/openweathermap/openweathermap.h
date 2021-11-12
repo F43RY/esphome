@@ -14,6 +14,16 @@ static const uint32_t ESPOWM_POLL_INTERVAL_DEFAULT = 100000;
 // static const char* SERVERNAME = "api.openweathermap.org/data/2.5/weather?";
 static const std::string OWM_URL = "localhost?";
 
+class OpenWeathermapResponse : public http_request::HttpRequestResponseTrigger {};
+
+class OpenWeathermapRequestComponent : public http_request::HttpRequestComponent {
+ public:
+  std::string get_url();
+
+  //   HttpRequest::s
+  //   std::string url_;
+};
+
 class CurrentWeatherData : public PollingComponent, public text_sensor::TextSensor {
  public:
   void setup() override;
@@ -37,14 +47,12 @@ class CurrentWeatherData : public PollingComponent, public text_sensor::TextSens
   float latitude_ = 1000;
   float longitude_ = 1000;
   std::string zip_code_ = NULL;
+  // http_request::HttpRequestComponent request;
+  OpenWeathermapRequestComponent request;
 
-private:
+ private:
   std::string build_url();
 };
-
-class OpenWeathermapResponse : public http_request::HttpRequestResponseTrigger {};
-
-class OpenWeathermapRequestComponent : public http_request::HttpRequestComponent {};
 
 }  // namespace openweathermap
 }  // namespace esphome

@@ -31,7 +31,7 @@ CONF_API_KEY = "appid"
 CONF_MODE = "mode"
 CONF_UNITS = "units"
 
-#DEPENDENCIES = ["http_request"]
+DEPENDENCIES = ["http_request"]
 AUTO_LOAD = ["json"]
 
 owm_ns = cg.esphome_ns.namespace("openweathermap")
@@ -110,8 +110,8 @@ CONFIG_SCHEMA = text_sensor.TEXT_SENSOR_SCHEMA.extend(
         cv.Required(CONF_API_KEY): cv.All(cv.string_strict, cv.Length(min=32, max=32)),
         cv.Optional(CONF_LANG, default="en"): cv.All(cv.one_of(*LANGUAGES), lower=True),
         cv.Optional(CONF_UNITS, default="standard"): cv.All(cv.one_of(*OWM_UNITS), lower=True),
-        cv.Optional(CONF_CITY_NAME): cv.string, #text_sensor.TEXT_SENSOR_SCHEMA.extend({
-        cv.Optional(CONF_CITY_ID): cv.positive_int,
+        cv.Optional(CONF_CITY_NAME): cv.string_strict, #text_sensor.TEXT_SENSOR_SCHEMA.extend({
+        cv.Optional(CONF_CITY_ID): cv.string,
         cv.Optional(CONF_BY_GEO_COORDS): cv.Schema({
             cv.Required(CONF_GEO_LAT): cv.float_range,
             cv.Required(CONF_GEO_LON): cv.float_range
